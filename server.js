@@ -28,7 +28,7 @@ app.get('/api/notes', (req, res) => res.json(notes));
 
 
 // Create New note - takes in JSON input
-app.post('/api/newNote', (req, res) => {
+app.post('/api/notes', (req, res) => {
   const newNote = req.body;
   newNote.routeName = newNote.name.replace(/\s+/g, '').toLowerCase();
   console.log(newNote);
