@@ -11,10 +11,10 @@ module.exports = app => {
     },
     // api post request 
     app.post('/api/notes', (req, res) => {
-        const newInput= req.body;
+        const newNote= req.body;
         // assign unique ID to every input
-        newInput.id = uuidv4();
-        DataCue.push(newInput);
+        newNote.id = uuidv4();
+        DataCue.push(newNote);
         // writes input to db.json file
         fs.writeFile('./db/db.json', JSON.stringify(notes));
         response.json(notes);
