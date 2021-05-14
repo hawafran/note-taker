@@ -10,33 +10,24 @@ const PORT = process.env.PORT || 8000;
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(__dirname, './public'));
 app.use(express.json());
 
-const notes = [];
-
-
-
-// Routes
 
 // Basic route that sends the user first to the AJAX Page
-app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, './public/notes.html')));
-app.get('*', (req, res) => res.sendFile(path.join(__dirname, './public/home.html')));
-app.get('/api/notes', (req, res) => res.json(notes));
 
-// Displays all tables
-
-
-
+app.use('/notes', (req, res) => res.sendFile(path.join(__dirname, './public/notes.html')));
+app.use('*', (req, res) => res.sendFile(path.join(__dirname, './public/home.html')));
+app.use('/api/notes', (req, res) => res.json(notes));
 // Create New note - takes in JSON input
 app.post('/api/notes', (req, res) => {
   const newNote = req.body;
   newNote.routeName = newNote.name.replace(/\s+/g, '').toLowerCase();
   console.log(newNote);
-  tables.push(newTable);
+  notes.push(newNotes);
 
-  res.json(newTable);
+  res.json(newNotes);
 });
 
 // Starts the server to begin listening
-
 app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));
