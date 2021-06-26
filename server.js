@@ -1,8 +1,10 @@
 
 
 const express = require("express");
-
 const app = express();
+const apiRoutes = require('./routes/apiRoutes');
+const htmlRoutes = require('./routes/htmlRoutes');
+
 
 // Sets port.
 const PORT = process.env.PORT || 3000;
@@ -15,7 +17,7 @@ app.use(express.static('public'))
 // ROUTES
 // require('./routes/apiRoutes')(app);
 // require('./routes/htmlRoutes')(app);
-app.use('/api' ,apiroutes); 
+app.use('/api' ,apiRoutes); 
 app.use('/' ,htmlRoutes)
 
 app.listen(PORT, function() {
